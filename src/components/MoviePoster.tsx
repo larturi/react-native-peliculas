@@ -52,11 +52,3 @@ const styles = StyleSheet.create({
     elevation: 9,
   },
 });
-function key(key: any, arg1: string) {
-  throw new Error('Function not implemented.');
-}
-
-function routeNames(key: (key: any, arg1: string) => void, arg1: string, index: any, arg3: number, routeNames: any, DetailScreen: () => JSX.Element) {
-  throw new Error('Function not implemented.');
-}
-
