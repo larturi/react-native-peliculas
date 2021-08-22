@@ -21,6 +21,7 @@ export const MoviePoster = ({ movie, height = 430, width = 280 }: Props) => {
         marginHorizontal: 3,
         paddingBottom: 20,
         paddingHorizontal: 4,
+        borderRadius: 7,
       }}>
       <View style={styles.imageContainer}>
         <Image source={{ uri }} style={styles.image} />
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     shadowColor: '#000000',
+    borderRadius: 7,
     shadowOffset: {
       width: 7,
       height: 7,
