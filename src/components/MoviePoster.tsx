@@ -1,4 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
+// @ts-nocheck
 
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
