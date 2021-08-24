@@ -1,10 +1,19 @@
+/* eslint-disable react-native/no-inline-styles */
+
 import React from 'react';
-import { Image, View, StyleSheet, Dimensions, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  Image,
+  View,
+  StyleSheet,
+  Dimensions,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../navigation/Navigation';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useMovieDetails } from '../hooks/useMovieDetails';
+import { MovieDetails } from '../components/MovieDetails';
 
 const screenHeight = Dimensions.get('screen').height;
 
@@ -14,7 +23,9 @@ export const DetailScreen = ({ route }: Props) => {
   const movie = route.params;
   const uri = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
-  useMovieDetails(movie.id);
+  const { isLoading, cast, movieFull } = useMovieDetails(movie.id);
+
+  console.log(cast);
 
   return (
     <ScrollView>
@@ -25,9 +36,11 @@ export const DetailScreen = ({ route }: Props) => {
         <Text style={styles.subTitle}>{movie.original_title}</Text>
         <Text style={styles.title}>{movie.title}</Text>
       </View>
-      <View style={styles.marginContainer}>
-        <Icon name="star" color="grey" size={20} />
-      </View>
+      {isLoading ? (
+        <ActivityIndicator size={35} color="grey" style={{ marginTop: 20 }} />
+      ) : (
+        <MovieDetails movieFull={movieFull!} cast={cast} />
+      )}
     </ScrollView>
   );
 };
