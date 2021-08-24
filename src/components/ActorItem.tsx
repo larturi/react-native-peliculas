@@ -31,17 +31,11 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    shadowColor: '#000000',
-    borderRadius: 1,
-    shadowOffset: {
-      width: 7,
-      height: 7,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 9,
+    marginLeft: 20,
+    paddingRight: 10,
   },
   actorInfo: {
     marginLeft: 10,
+    marginTop: 4,
   },
 });
