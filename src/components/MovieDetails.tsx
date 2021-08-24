@@ -5,6 +5,8 @@ import { Text, View } from 'react-native';
 import { MovieFull } from '../interfaces/movieInterface';
 import { Cast } from '../interfaces/creditsInterface';
 import Icon from 'react-native-vector-icons/Ionicons';
+import currencyFormatter from 'currency-formatter';
+import { ActorItem } from './ActorItem';
 
 interface Props {
   movieFull: MovieFull;
@@ -14,8 +16,8 @@ interface Props {
 export const MovieDetails = ({ movieFull, cast }: Props) => {
   return (
     <>
-      {/* Detalles */}
       <View style={{ marginHorizontal: 20, marginTop: 10 }}>
+        {/* Detalles (Puntuacion y Generos) */}
         <View style={{ flexDirection: 'row' }}>
           <Icon name="star-outline" color="grey" size={16} />
           <Text style={{ marginLeft: 4 }}>{movieFull.vote_average}</Text>
@@ -24,6 +26,34 @@ export const MovieDetails = ({ movieFull, cast }: Props) => {
             - {movieFull.genres.map(g => g.name).join(', ')}
           </Text>
         </View>
+
+        {/* Historia */}
+        <Text style={{ fontSize: 18, marginTop: 10, fontWeight: 'bold' }}>
+          Historia
+        </Text>
+        <Text style={{ fontSize: 15 }}>{movieFull.overview}</Text>
+
+        {/* Presupuesto */}
+        <Text style={{ fontSize: 18, marginTop: 10, fontWeight: 'bold' }}>
+          Presupuesto
+        </Text>
+        <Text style={{ fontSize: 15 }}>
+          {currencyFormatter.format(movieFull.budget, { code: 'USD' })}
+        </Text>
+      </View>
+
+      {/* Cast */}
+      <View style={{ marginTop: 7, marginBottom: 100 }}>
+        <Text
+          style={{
+            fontSize: 18,
+            marginTop: 10,
+            fontWeight: 'bold',
+            marginHorizontal: 20,
+          }}>
+          Elenco
+        </Text>
+        <ActorItem actor={cast[0]} />
       </View>
     </>
   );
