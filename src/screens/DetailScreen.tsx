@@ -8,24 +8,24 @@ import {
   Dimensions,
   Text,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../navigation/Navigation';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useMovieDetails } from '../hooks/useMovieDetails';
 import { MovieDetails } from '../components/MovieDetails';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const screenHeight = Dimensions.get('screen').height;
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
-export const DetailScreen = ({ route }: Props) => {
+export const DetailScreen = ({ route, navigation }: Props) => {
   const movie = route.params;
   const uri = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
   const { isLoading, cast, movieFull } = useMovieDetails(movie.id);
-
-  console.log(cast);
 
   return (
     <ScrollView>
@@ -41,6 +41,13 @@ export const DetailScreen = ({ route }: Props) => {
       ) : (
         <MovieDetails movieFull={movieFull!} cast={cast} />
       )}
+
+      {/* Boton para cerrar el DetailScreen */}
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}>
+        <Icon color="#575757" name="arrow-back-outline" size={40} />
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -73,5 +80,12 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 16,
     opacity: 0.8,
+  },
+  backButton: {
+    position: 'absolute',
+    zIndex: 999,
+    elevation: 9,
+    top: 10,
+    left: 5,
   },
 });
