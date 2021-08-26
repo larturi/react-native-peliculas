@@ -46,7 +46,7 @@ export const DetailScreen = ({ route, navigation }: Props) => {
       <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.goBack()}>
-        <Icon color="#575757" name="arrow-back-outline" size={40} />
+        <Icon color="#a5a5a5" name="arrow-back-outline" size={40} />
       </TouchableOpacity>
     </ScrollView>
   );
@@ -83,9 +83,8 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    zIndex: 999,
     elevation: 9,
-    top: 10,
-    left: 5,
+    top: 30,
+    left: 10,
   },
 });
