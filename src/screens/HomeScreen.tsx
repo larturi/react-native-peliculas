@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 
 import React, { useContext } from 'react';
@@ -12,6 +13,7 @@ import { HorizontalSlider } from '../components/HorizontalSlider';
 import { GradientBackground } from '../components/GradientBackground';
 import { getImageColors } from '../helpers/getColores';
 import { GradientContext } from '../context/GradientContext';
+import { useEffect } from 'react';
 
 const { width: windowWidth } = Dimensions.get('window');
 
@@ -28,6 +30,12 @@ export const HomeScreen = () => {
 
     setMainColors({ primary, secondary });
   };
+
+  useEffect(() => {
+    if (nowPlaying.length > 0) {
+      getPosterColors(0);
+    }
+  }, [nowPlaying]);
 
   if (isLoading) {
     return (

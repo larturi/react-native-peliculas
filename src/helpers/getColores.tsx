@@ -23,7 +23,5 @@ export const getImageColors = async (uri: string) => {
       throw new Error('Unexpected platform key');
   }
 
-  console.log(uri, primary, secondary);
-
   return [primary, secondary];
 };
