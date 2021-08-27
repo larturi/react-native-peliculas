@@ -3,7 +3,7 @@ import ImageColors from 'react-native-image-colors';
 export const getImageColors = async (uri: string) => {
   const result = await ImageColors.getColors(uri, {
     fallback: '#228B22',
-    cache: true,
+    cache: false,
     key: 'unique_key',
   });
 
@@ -22,6 +22,8 @@ export const getImageColors = async (uri: string) => {
     default:
       throw new Error('Unexpected platform key');
   }
+
+  console.log(uri, primary, secondary);
 
   return [primary, secondary];
 };

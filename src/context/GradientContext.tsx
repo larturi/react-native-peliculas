@@ -1,10 +1,9 @@
+/* eslint-disable no-shadow */
 import React, { createContext, useState } from 'react';
-
 interface ImageColors {
   primary: string;
   secondary: string;
 }
-
 interface ContextProps {
   colors: ImageColors;
   prevColors: ImageColors;
@@ -16,8 +15,8 @@ export const GradientContext = createContext({} as ContextProps);
 
 export const GradientProvider = ({ children }: any) => {
   const [colors, setColors] = useState<ImageColors>({
-    primary: 'transparent',
-    secondary: 'transparent',
+    primary: 'red',
+    secondary: 'blue',
   });
 
   const [prevColors, setPrevColors] = useState<ImageColors>({
